@@ -37,7 +37,7 @@ app.get('/users', verifyToken, usersCtrl.index)
 // patient routes
 app.post('/patients/new', patientCtrl.create)
 app.get('/patients', patientCtrl.index)
-
+app.delete("/patients/:patientId" , patientCtrl.deletePatient)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)

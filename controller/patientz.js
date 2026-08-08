@@ -30,10 +30,19 @@ const index = async (req, res) => {
   }
 }
 
+const deletePatient = async (req, res) => {
+    try {
+        const patient = await Patient.findById(req.params.patientId)
 
+        const deletePatient = await Patient.findByIdAndDelete(req.params.patientId)
+        res.status(204).json(deletePatient)
+    } catch (err) {
+        res.status(500).json({ err: err.message })
+    }
+}
 
 module.exports ={
     create,
     index,
-   
+    deletePatient,
 }
