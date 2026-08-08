@@ -11,7 +11,8 @@ const patientSchema = new mongoose.Schema({
     },
     phroneNumber:{
         type: String,
-        require: true
+        require: true,
+        
     },
     gender:{
         type: String,
