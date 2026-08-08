@@ -12,10 +12,11 @@ const morgan = require('morgan')
 
 const PORT = process.env.PORT ? process.env.PORT : "3000"
 
-// conttrolers
+// conttrolers ==============================================
 const authCtrl = require('./controller/auth.js')
 const usersCtrl = require('./controller/users.js')
 const patientCtrl = require('./controller/patientz.js')
+const scheduleCtrl = require('./controller/schedulez.js')
 
 const verifyToken = require('./middleware/verify-token')
 
@@ -39,6 +40,10 @@ app.post('/patients/new', patientCtrl.create)
 app.get('/patients', patientCtrl.index)
 app.delete("/patients/:patientId" , patientCtrl.deletePatient)
 app.put("/patients/:patientId" , patientCtrl.updatePatient)
+
+//Schedule Routes
+app.post("/schedules/new", scheduleCtrl.create)
+app.get('/schedules', scheduleCtrl.index)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)

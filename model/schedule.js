@@ -6,13 +6,13 @@ const appointmentSchema = new mongoose.Schema({
         ref:  'Patient',
         required: true,
     },
-    // Full date & time
+
     startTime: {
-        type: Date, 
+        type: Number, 
         required: true,
     },
     endTime: {
-        type: Date, 
+        type: Number, 
         required: true,
     },
     status: {
