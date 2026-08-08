@@ -59,9 +59,21 @@ const updatePatient = async (req, res) => {
     }
 }
 
+const show = async (req,res) => {
+    try {
+        const patient = await Patient.findById(req.params.patientId)
+         res.status(200).json(patient);
+
+    } catch (err) {
+    res.status(500).json({ err: err.message })
+        
+    }
+}
+
 module.exports ={
     create,
     index,
     deletePatient,
     updatePatient,
+    show,
 }

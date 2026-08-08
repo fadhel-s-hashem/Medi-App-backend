@@ -36,10 +36,11 @@ app.post('/auth/sign-in' , authCtrl.signIn)
 app.get('/users', verifyToken, usersCtrl.index)
 
 // patient routes
-app.post('/patients/new', patientCtrl.create)
+app.post('/patients', patientCtrl.create)
 app.get('/patients', patientCtrl.index)
 app.delete("/patients/:patientId" , patientCtrl.deletePatient)
 app.put("/patients/:patientId" , patientCtrl.updatePatient)
+app.get("/patients/:patientId" , patientCtrl.show)
 
 //Schedule Routes
 app.post("/schedules/new", scheduleCtrl.create)
