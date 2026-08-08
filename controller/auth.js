@@ -56,15 +56,8 @@ const signIn = async (req,res) => {
             return res.status(401).json({ err: 'Login failed. Please try again.' })
         }
 
-        const userData = {
-            CPR: req.body.CPR,
-            username: req.body.username,
-            
-        }
-
-       const user = await User.create(userData) 
         // create the payload
-            const payload = {username: user.username, CPR: user.CPR , _id:user._id}
+            const payload = {username: userInDatabase.username, CPR: userInDatabase.CPR , _id:userInDatabase._id}
         // create the token+ attach the payload
             const token = jwt.sign({payload}, process.env.JWT_SECRET)
 
