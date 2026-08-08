@@ -44,6 +44,7 @@ app.put("/patients/:patientId" , patientCtrl.updatePatient)
 //Schedule Routes
 app.post("/schedules/new", scheduleCtrl.create)
 app.get('/schedules', scheduleCtrl.index)
+app.delete('/schedules/:scheduleId', scheduleCtrl.deleteSchedule)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)
