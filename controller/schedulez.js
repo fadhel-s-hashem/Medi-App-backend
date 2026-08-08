@@ -35,8 +35,27 @@ const deleteSchedule = async (req,res) => {
     }
 }
 
+const updateSchedule = async (req,res) => {
+    try {
+        const schedule = await  Schedule.findById(req.params.scheduleId)
+
+
+         const updateSchedule = await Schedule.findByIdAndUpdate(
+           req.params.scheduleId,
+           req.body,
+           {new: true} 
+        )
+        res.status(200).json(updateSchedule)
+        
+    } catch (err) {
+     res.status(500).json({ err: err.message })
+        
+    }
+}
+
 module.exports ={
     create,
     index,
     deleteSchedule,
+    updateSchedule,
 }
