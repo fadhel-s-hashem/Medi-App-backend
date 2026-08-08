@@ -1,5 +1,30 @@
 const mongoose = require('mongoose')
 
+const appointmentSchema = new mongoose.Schema({
+    patient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:  'Patient',
+        required: true,
+    },
+    // Full date & time
+    startTime: {
+        type: Date, 
+        required: true,
+    },
+    endTime: {
+        type: Date, 
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['scheduled', 'arrived', 'completed'],
+        default: 'Scheduled',
+    },
+    notes: {
+        type: String,
+    },
+} , { timestamps: true })
+
 const scheduleSchema = new mongoose.Schema({
     doctorName: {
         type: String,
@@ -24,7 +49,7 @@ const scheduleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-  
+    appointments: [appointmentSchema],
 }, { timestamps: true })
 
 const Schedule = mongoose.model('Schedule', scheduleSchema)
