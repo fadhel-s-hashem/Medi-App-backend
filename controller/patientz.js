@@ -35,7 +35,7 @@ const deletePatient = async (req, res) => {
         const patient = await Patient.findById(req.params.patientId)
 
         const deletePatient = await Patient.findByIdAndDelete(req.params.patientId)
-        res.status(204).json(deletePatient)
+        res.status(200).json(deletePatient)
     } catch (err) {
         res.status(500).json({ err: err.message })
     }
