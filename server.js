@@ -47,6 +47,7 @@ app.post("/schedules/new", scheduleCtrl.create)
 app.get('/schedules', scheduleCtrl.index)
 app.delete('/schedules/:scheduleId', scheduleCtrl.deleteSchedule)
 app.put('/schedules/:scheduleId', scheduleCtrl.updateSchedule)
+app.get('/schedules/:scheduleId', scheduleCtrl.show)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)

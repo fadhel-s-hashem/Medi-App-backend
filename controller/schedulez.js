@@ -53,9 +53,21 @@ const updateSchedule = async (req,res) => {
     }
 }
 
+const show = async (req, res) => {
+    try {
+        const schedule = await Schedule.findById(req.params.scheduleId).populate('appointments')
+        
+        res.status(200).json(schedule)
+    } catch (err) {
+
+        res.status(500).json({ err: err.message })
+    }
+}
+
 module.exports ={
     create,
     index,
     deleteSchedule,
     updateSchedule,
+    show,
 }

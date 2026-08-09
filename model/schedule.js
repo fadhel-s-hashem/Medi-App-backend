@@ -37,7 +37,7 @@ const scheduleSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true,
+        
         
     },
     shiftStart: {
