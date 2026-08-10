@@ -13,6 +13,22 @@ const create = async (req,res) => {
     }
 }
 
+const deleteApp = async (req,res) => {
+    try {
+        const schedule = await  Schedule.findById(req.params.scheduleId)
+
+        const appointments = schedule.appointments.id(req.params.appointmentId)
+
+        schedule.appointments.remove({_id: req.params.appointmentId})
+ res.status(204).json({message: "appointment deleted"}) 
+
+    } catch (err) {
+     res.status(500).json({ err: err.message })
+        
+    }
+}
+
 module.exports={
     create,
+    deleteApp,
 }

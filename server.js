@@ -52,6 +52,7 @@ app.get('/schedules/:scheduleId', scheduleCtrl.show)
 
 //appointments Route
 app.post('/schedules/:scheduleId/appointments', appointmentCtrl.create)
+app.delete('/schedules/:scheduleId/appointments/:appointmentId', appointmentCtrl.deleteApp)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)
