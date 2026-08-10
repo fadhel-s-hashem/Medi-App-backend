@@ -17,6 +17,7 @@ const authCtrl = require('./controller/auth.js')
 const usersCtrl = require('./controller/users.js')
 const patientCtrl = require('./controller/patientz.js')
 const scheduleCtrl = require('./controller/schedulez.js')
+const appointmentCtrl = require('./controller/appointmentz.js')
 
 const verifyToken = require('./middleware/verify-token')
 
@@ -48,6 +49,9 @@ app.get('/schedules', scheduleCtrl.index)
 app.delete('/schedules/:scheduleId', scheduleCtrl.deleteSchedule)
 app.put('/schedules/:scheduleId', scheduleCtrl.updateSchedule)
 app.get('/schedules/:scheduleId', scheduleCtrl.show)
+
+//appointments Route
+app.post('/schedules/:scheduleId/appointments', appointmentCtrl.create)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)

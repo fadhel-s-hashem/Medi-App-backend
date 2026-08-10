@@ -4,16 +4,16 @@ const appointmentSchema = new mongoose.Schema({
     patient: {
         type: mongoose.Schema.Types.ObjectId,
         ref:  'Patient',
-        required: true,
+        
     },
 
     startTime: {
         type: Number, 
-        required: true,
+        
     },
     endTime: {
         type: Number, 
-        required: true,
+        
     },
     status: {
         type: String,
