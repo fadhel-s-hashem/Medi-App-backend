@@ -7,18 +7,15 @@ const appointmentSchema = new mongoose.Schema({
         
     },
 
-    startTime: {
-        type: Number, 
-        
-    },
-    endTime: {
-        type: Number, 
+   timeSlot: {
+        type: String, 
+       
         
     },
     status: {
         type: String,
         enum: ['scheduled', 'arrived', 'completed'],
-        default: 'Scheduled',
+        default: 'scheduled',
     },
     notes: {
         type: String,

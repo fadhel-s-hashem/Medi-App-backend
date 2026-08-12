@@ -7,6 +7,7 @@ const create = async (req,res) => {
 
         schedule.appointments.push(req.body)
         await schedule.save()
+        await schedule.populate('appointments.patient')
         res.status(201).json(schedule)
     } catch (err) {
         res.status(500).json({ err: err.message })
@@ -26,6 +27,13 @@ const deleteApp = async (req,res) => {
      res.status(500).json({ err: err.message })
         
     }
+}
+
+const update = async (req,res) => {
+    const schedule = await  Schedule.findById(req.params.scheduleId)
+    const appointments = schedule.appointments.id(req.params.appointmentId)
+
+
 }
 
 module.exports={

@@ -14,7 +14,7 @@ const create = async (req,res) => {
 const index = async (req,res) => {
     try {
         const schedule = await Schedule.find()
-        .populate('appointments')
+        .populate('appointments.patient')
         res.status(201).json(schedule)
     } catch (err) {
         res.status(500).json({ err: err.message })
@@ -55,7 +55,7 @@ const updateSchedule = async (req,res) => {
 
 const show = async (req, res) => {
     try {
-        const schedule = await Schedule.findById(req.params.scheduleId).populate('appointments')
+        const schedule = await Schedule.findById(req.params.scheduleId).populate('appointments.patient')
         
         res.status(200).json(schedule)
     } catch (err) {
