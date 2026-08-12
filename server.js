@@ -37,22 +37,22 @@ app.post('/auth/sign-in' , authCtrl.signIn)
 app.get('/users', verifyToken, usersCtrl.index)
 
 // patient routes
-app.post('/patients', patientCtrl.create)
-app.get('/patients', patientCtrl.index)
-app.delete("/patients/:patientId" , patientCtrl.deletePatient)
-app.put("/patients/:patientId" , patientCtrl.updatePatient)
-app.get("/patients/:patientId" , patientCtrl.show)
+app.post('/patients', verifyToken, patientCtrl.create)
+app.get('/patients', verifyToken, patientCtrl.index)
+app.delete("/patients/:patientId" , verifyToken, patientCtrl.deletePatient)
+app.put("/patients/:patientId" , verifyToken, patientCtrl.updatePatient)
+app.get("/patients/:patientId" , verifyToken, patientCtrl.show)
 
 //Schedule Routes
-app.post("/schedules/new", scheduleCtrl.create)
-app.get('/schedules', scheduleCtrl.index)
-app.delete('/schedules/:scheduleId', scheduleCtrl.deleteSchedule)
-app.put('/schedules/:scheduleId', scheduleCtrl.updateSchedule)
-app.get('/schedules/:scheduleId', scheduleCtrl.show)
+app.post("/schedules/new", verifyToken, scheduleCtrl.create)
+app.get('/schedules', verifyToken, scheduleCtrl.index)
+app.delete('/schedules/:scheduleId', verifyToken, scheduleCtrl.deleteSchedule)
+app.put('/schedules/:scheduleId', verifyToken, scheduleCtrl.updateSchedule)
+app.get('/schedules/:scheduleId', verifyToken, scheduleCtrl.show)
 
 //appointments Route
-app.post('/schedules/:scheduleId/appointments', appointmentCtrl.create)
-app.delete('/schedules/:scheduleId/appointments/:appointmentId', appointmentCtrl.deleteApp)
+app.post('/schedules/:scheduleId/appointments', verifyToken, appointmentCtrl.create)
+app.delete('/schedules/:scheduleId/appointments/:appointmentId', verifyToken, appointmentCtrl.deleteApp)
 
 app.listen(PORT, () => {
   console.log(`The express app is ready on port ${PORT}! 😀`)
