@@ -44,7 +44,7 @@ app.put("/patients/:patientId" , verifyToken, patientCtrl.updatePatient)
 app.get("/patients/:patientId" , verifyToken, patientCtrl.show)
 
 //Schedule Routes
-app.post("/schedules/new", verifyToken, scheduleCtrl.create)
+app.post("/schedules", verifyToken, scheduleCtrl.create)
 app.get('/schedules', verifyToken, scheduleCtrl.index)
 app.delete('/schedules/:scheduleId', verifyToken, scheduleCtrl.deleteSchedule)
 app.put('/schedules/:scheduleId', verifyToken, scheduleCtrl.updateSchedule)
