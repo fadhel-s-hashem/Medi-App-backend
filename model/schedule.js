@@ -20,6 +20,12 @@ const appointmentSchema = new mongoose.Schema({
     notes: {
         type: String,
     },
+
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        },
 } , { timestamps: true })
 
 const scheduleSchema = new mongoose.Schema({
@@ -46,6 +52,12 @@ const scheduleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        },
+
     appointments: [appointmentSchema],
 }, { timestamps: true })
 

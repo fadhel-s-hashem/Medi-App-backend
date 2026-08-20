@@ -3,6 +3,7 @@ const Schedule = require('../model/schedule.js')
 
 const create = async (req,res) => {
     try {
+    req.body.author = req.user._id
     const schedule = await Schedule.create(req.body)
     res.status(201).json(schedule)
     } catch (err) {
@@ -14,7 +15,7 @@ const create = async (req,res) => {
 const index = async (req,res) => {
     try {
         const schedule = await Schedule.find()
-        .populate('appointments.patient')
+        .populate("author").populate('appointments.patient')
         res.status(201).json(schedule)
     } catch (err) {
         res.status(500).json({ err: err.message })
@@ -55,7 +56,10 @@ const updateSchedule = async (req,res) => {
 
 const show = async (req, res) => {
     try {
-        const schedule = await Schedule.findById(req.params.scheduleId).populate('appointments.patient')
+        const schedule = await Schedule.findById(req.params.scheduleId)
+        .populate('appointments.patient')
+        .populate('appointments.author')
+        .populate("author")
         
         res.status(200).json(schedule)
     } catch (err) {

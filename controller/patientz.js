@@ -5,13 +5,16 @@ const create = async (req, res) => {
     try {
         
         const PatientInDatabase = await Patient.findOne({
-            CPR: req.body.CPR
+            CPR: req.body.CPR,
+        
         })
         
         if (PatientInDatabase){
             return res.status(409).json({err:'An patient with this CPR already exists'})
         }
+        req.body.author = req.user._id
         const patient = await Patient.create(req.body);
+        patient._doc.author = req.user
 
         res.status(201).json(patient)
     } catch (err) {
@@ -22,7 +25,9 @@ const create = async (req, res) => {
 const index = async (req, res) => {
   try {
 
-    const patients = await Patient.find({}).sort({ createdAt: -1 })
+    const patients = await Patient.find({ author: req.user._id })
+    .populate("author")
+    .sort({ createdAt: -1 })
     res.status(200).json(patients);
   } catch (err) {
 
@@ -61,7 +66,7 @@ const updatePatient = async (req, res) => {
 
 const show = async (req,res) => {
     try {
-        const patient = await Patient.findById(req.params.patientId)
+        const patient = await Patient.findById(req.params.patientId).populate('author')
          res.status(200).json(patient);
 
     } catch (err) {
